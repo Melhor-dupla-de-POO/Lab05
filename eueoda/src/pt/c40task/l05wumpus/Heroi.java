@@ -2,11 +2,16 @@ package pt.c40task.l05wumpus;
 
 public class Heroi extends Componente {
 	static private String nome;
-	static private int qtflecha, score;
+	static private int qt_flecha, score;
 	static private boolean vivo, equipada, ouro;
 	Heroi(int x, int y, Caverna cave, String nome) {
-		equipada = false; qt_flecha = 1; Heroi.nome = nome; Heroi.score = 0; Heroi.ouro = false; Heroi.vivo = true;
 		super(x, y, 'P', cave, 0);
+		equipada = false; 
+		qt_flecha = 1; 
+		Heroi.nome = nome; 
+		Heroi.score = 0; 
+		Heroi.ouro = false; 
+		Heroi.vivo = true;
 	}
 	public String getNome() {
 		return nome;
@@ -27,8 +32,28 @@ public class Heroi extends Componente {
 		}
 		else cave.moveHeroi(comando);
 	}
-	public void somaScore(int val) score += val;
-	public int getScore() return score;
-	public void setVivo(boolean vivo) this.vivo = vivo;
-	public boolean getVivo() return this.vivo;
+	public void somaScore(int val) {
+		score += val;
+	}
+	public int getScore() {
+		return score;
+	}
+	public static void setVivo(boolean vivo) {
+		Heroi.vivo = vivo;
+	}
+	public static boolean getVivo() {
+		return Heroi.vivo;
+	}
+	public static boolean getOuro() {
+		return Heroi.ouro;
+	}
+	public static void setOuro(boolean ouro) {
+		Heroi.ouro = ouro;
+	}
+	public static boolean getEquipada() {
+		return Heroi.equipada;
+	}
+	public static void setEquipada(boolean equipada) {
+		Heroi.equipada = equipada;
+	}
 }

@@ -27,5 +27,7 @@ public abstract class Componente {
 	public int getPrimario() {
 		return this.primario;
 	}
-	public getId() return this.id;
+	public char getId() {
+		return this.id;
+	}
 }
