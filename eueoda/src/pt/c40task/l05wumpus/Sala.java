@@ -1,10 +1,24 @@
 package pt.c40task.l05wumpus;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class Sala {
 	private ArrayList<Componente> comps;
 	boolean visitado;
+	private static Map<Character, Integer> poder = Map.of(
+			'O', 3,
+			'B', 3,
+			'W', 3,
+			'P', 2,
+			'f', 1,
+			'b', 0
+		);
+	
+	Sala() {
+		comps = new ArrayList<Componente>();
+		visitado = false;
+	}
 	
 	public void adiciona(Componente nova) {
 		// Só podemos ter um componente entre Ouro, Wumpus e Buraco
@@ -29,10 +43,10 @@ public class Sala {
 		
 		// nao sei se a gnt printa aqui ou qd printar o bagulho da sala
 		if (buraco) {
-			hero.setVivo(false);
+			Heroi.setVivo(false);
 		}
 		if (wumpus) {
-			if (hero.getEquipada()) {
+			if (Heroi.getEquipada()) {
 				// to do random
 				System.out.println("Você entrou na sala e matou o Wumpus!");
 			}
@@ -59,5 +73,23 @@ public class Sala {
 	
 	public void retira(Componente velha) {
 		this.comps.remove(velha);
+	}
+	
+	public String toString() {
+		String ans = new String();
+		int pwr = -1;
+		if (this.visitado) ans = "#";
+		else ans = "-";
+		for (Componente c : comps) {
+			if (poder.get(c.getId()) > pwr) {
+				pwr = poder.get(c.getId());
+				ans = "" + c.getId();
+			}
+		}
+		return ans;
+	}
+	
+	public void setVisitado(boolean visitado) {
+		this.visitado = visitado;
 	}
 }

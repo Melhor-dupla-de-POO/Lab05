@@ -33,52 +33,52 @@ public class Caverna {
 	}
 	
 	void moveHeroi(Acoes acao) {
-		int[] pos = hero.getPos();
+		int[] pos1 = hero.getPos(), pos2 = pos1;
 		switch (acao) {
 			case CIMA:
-				pos[0]--;
-				if (!celulaValida(pos)) {
-					invalido();
-					break;
-				}
-				this.salas[pos[0] + 1][pos[1]].retira(hero);
-				this.salas[pos[0]][pos[1]].adicionaHeroi(hero);
+				pos2[0]--;
 				break;
 			case BAIXO:
-				pos[0]++;
-				if (!celulaValida(pos)) {
-					invalido();
-					break;
-				}
-				this.salas[pos[0] - 1][pos[1]].retira(hero);
-				this.salas[pos[0]][pos[1]].adicionaHeroi(hero);
+				pos2[0]++;
 				break;
 			case DIR:
-				pos[1]++;
-				if (!celulaValida(pos)) {
-					invalido();
-					break;
-				}
-				this.salas[pos[0]][pos[1] - 1].retira(hero);
-				this.salas[pos[0]][pos[1]].adicionaHeroi(hero);
+				pos2[1]++;
 				break;
 			case ESQ:
-				pos[1]--;
-				if (!celulaValida(pos)) {
-					invalido();
-					break;
-				}
-				this.salas[pos[0]][pos[1] + 1].retira(hero);
-				this.salas[pos[0]][pos[1]].adicionaHeroi(hero);
+				pos2[1]--;
 				break;
 			case INVALIDO:
 				invalido();
 				break;
 			case CAPTURA:
-				this.salas[pos[0]][pos[1]].coleta();
+				this.salas[pos1[0]][pos1[1]].coleta();
 				break;
 			default:
 				break;
 		}
+		if (acao == Acoes.CIMA || acao == Acoes.BAIXO 
+				|| acao == Acoes.DIR || acao == Acoes.ESQ) {
+			if (!celulaValida(pos2)) {
+				invalido();
+			}
+			else {
+				this.salas[pos1[0]][pos1[1]].retira(hero);
+				this.salas[pos1[0]][pos1[1]].setVisitado(true);
+				this.salas[pos2[0]][pos2[1]].adicionaHeroi(hero);
+				hero.setPos(pos2);
+			}
+		}
+	}
+	
+	public String toString() {
+		String ans = new String();
+		for (Sala[] linha : salas) {
+			for (Sala s : linha) {
+				ans += s.toString();
+				ans += " ";
+			}
+			ans += "\n";
+		}
+		return ans;
 	}
 }

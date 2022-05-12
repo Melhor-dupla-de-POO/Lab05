@@ -7,11 +7,12 @@ public class ControleJogo {
     private Caverna caverna;
     private Heroi jogador;
 
-    public ControleJogo(String[][] arquivoCaverna){
+    public ControleJogo(String[][] arquivoCaverna) {
     	System.out.print("Entre com um nome: ");
         String nome = keyboard.nextLine();
         caverna = MontadorCaverna.montaCaverna(arquivoCaverna, nome);
         if (caverna == null) System.out.println("Caverna inválida!");
+        this.jogador = this.caverna.hero;
     }
 
     public void run() {
