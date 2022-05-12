@@ -1,2 +1,2 @@
-# MC322
-Repositório para trabalhos em dupla de MC322
+# Lab05
+Repositório para o laboratório 5 de MC322
