@@ -7,7 +7,9 @@ import java.util.Random;
 
 public class Sala {
 	private ArrayList<Componente> comps;
-	boolean visitado;
+	private boolean visitado;
+	
+	// Map para calcular qual a componente mais relevante de cada sala
 	private static Map<Character, Integer> poder = Map.of(
 			'O', 3,
 			'B', 3,
@@ -22,20 +24,26 @@ public class Sala {
 		visitado = false;
 	}
 	
-	public void adiciona(Componente nova) {
+	public boolean adiciona(Componente nova) {
+		// Adiciona a nova componente e verifica se eh uma sala valida
+		
 		// Só podemos ter um componente entre Ouro, Wumpus e Buraco
 		int qtd = nova.getPrimario();
 		for (Componente c : comps) {
 			qtd += c.getPrimario();
 		}
-		if (qtd <= 1)
+		if (qtd <= 1) {
 			this.comps.add(nova);
+			return true;
+		}
 		else {
-			// Dar algum erro
+			return false;
 		}
 	}
 	
 	public void adicionaHeroi(Heroi hero) {
+		
+		// Coloca o heroi em this e verifica se tem um buraco ou wumpus
 		comps.add(hero);
 		boolean buraco = false, wumpus = false;
 		Componente w = null;
@@ -53,8 +61,9 @@ public class Sala {
 			hero.morre();
 		}
 		if (wumpus) {
+			
+			// Se ele é sortudo e tem a flecha equipada, o wumpus morre
 			if (hero.getEquipada() && rand.nextBoolean()) {
-				// to do random
 				System.out.println("Você entrou na sala e matou o Wumpus!");
 				hero.somaScore(500);
 				this.comps.remove(w);
@@ -67,6 +76,9 @@ public class Sala {
 	}
 	
 	public void coleta(Heroi hero) {
+		// Coleta o ouro e atualiza a sala e o score
+		// Ou indica que nao tem ouro
+		
 		boolean ouro = false;
 		Componente o = null;
 		for (Componente c : comps) {
@@ -91,6 +103,9 @@ public class Sala {
 	}
 
 	public String toString() {
+		// Devolve o caracter correspondente ao componente mais relevante da sala
+		// Se a sala ainda nao foi visitada, devolve '-'
+		
 		if (!this.visitado) return "-";
 		String ans = "#";
 		int pwr = -1;
@@ -104,6 +119,8 @@ public class Sala {
 	}
 	
 	public String frase() {
+		// Devolve a frase associada ao componente mais relevante da sala
+		
 		String ans = "A sala está vazia\n";
 		int pwr = -1;
 		for (Componente c : comps) {

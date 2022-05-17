@@ -5,7 +5,10 @@ public class Buraco extends Componente {
 		super(x, y, 'B', cave, 1);
 		this.criaSecundario();
 	}
+	
 	public void criaSecundario() {
+		// Cria brisa nas celulas adjacentes
+		
 		int[] dx = {0, 0, 1, -1}, dy = {1, -1, 0, 0};
 		int[] cur = this.getPos();
 		for(int i = 0; i < 4; i++) {

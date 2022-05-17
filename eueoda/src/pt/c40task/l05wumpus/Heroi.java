@@ -4,6 +4,7 @@ public class Heroi extends Componente {
 	private String nome;
 	private int qt_flecha, score;
 	private boolean vivo, equipada, ouro;
+	
 	Heroi(int x, int y, Caverna cave, String nome) {
 		super(x, y, 'P', cave, 0);
 		equipada = false; 
@@ -13,9 +14,7 @@ public class Heroi extends Componente {
 		this.ouro = false; 
 		this.vivo = true;
 	}
-	public String getNome() {
-		return nome;
-	}
+	
 	public void agir(Acoes comando) {
 		if (comando == Acoes.EQUIPA) {
 			if(this.equipada) {
@@ -33,24 +32,31 @@ public class Heroi extends Componente {
 		else {
 			cave.moveHeroi(comando);
 			if (this.getEquipada()) {
+				
+				// Como a flecha eh sempre disparada na proxima sala
+				// Nos desequipamos ela e atualizamos o score
 				this.setEquipada(false);
 				this.score -= 100;
 			}
 		}
-		// System.out.println(this.getPos()[0] + " " + this.getPos()[1]);
 	}
-	public void somaScore(int val) {
-		score += val;
+	
+	// Getters e Setters
+	public String getNome() {
+		return nome;
 	}
 	public int getScore() {
 		return score;
 	}
-	public void morre() {
-		this.vivo = false;
-		this.somaScore(-1000);
+	public void somaScore(int val) {
+		score += val;
 	}
 	public boolean getVivo() {
 		return this.vivo;
+	}
+	public void morre() {
+		this.vivo = false;
+		this.somaScore(-1000);
 	}
 	public boolean getOuro() {
 		return this.ouro;

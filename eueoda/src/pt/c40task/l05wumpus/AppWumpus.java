@@ -2,9 +2,6 @@ package pt.c40task.l05wumpus;
 
 public class AppWumpus {
 
-//  public static void main(String[] args) {
-//     System.out.println((new int[2])[1]);
-//  }
   public static void main(String[] args) {
      AppWumpus.executaJogo(
            (args.length > 0) ? args[0] : null,
@@ -18,44 +15,11 @@ public class AppWumpus {
      
      String[][] cave = tk.retrieveCave();
      System.out.println("=== Caverna");
-     // TODO FAZER A CLASSE JOGO
-     // TODO MOVIMENTO DO JOGADOR
-
+     
+     // Monta a caverna e se ela for valida, roda o jogo
      ControleJogo jogo = new ControleJogo(cave);
      if (jogo.valid())
     	 jogo.run();
-
-//     for (String[] strings : cave) {
-//        for (int c = 0; c < strings.length; c++)
-//           System.out.print(strings[c] + ((c < strings.length - 1) ? ", " : ""));
-//        System.out.println();
-//     }
-//
-//     String movements = tk.retrieveMovements();
-//     System.out.println("=== Movimentos");
-//     System.out.println(movements);
-//
-//     System.out.println("=== Caverna Intermediaria");
-//     char[][] partialCave = {
-//        {'#', '#', 'b', '-'},
-//        {'#', 'b', '-', '-'},
-//        {'b', '-', '-', '-'},
-//        {'p', '-', '-', '-'}
-//     };
-//     int score = -120;
-//     char status = 'x'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
-//     tk.writeBoard(partialCave, score, status);
-//
-//     System.out.println("=== Última Caverna");
-//     char[][] finalCave = {
-//        {'#', '#', 'b', '-'},
-//        {'#', 'b', '#', 'f'},
-//        {'b', '-', '-', 'w'},
-//        {'#', '-', '-', '-'}
-//     };
-//     score = -1210;
-//     status = 'n'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
-//     tk.writeBoard(finalCave, score, status);
      
      tk.stop();
   }

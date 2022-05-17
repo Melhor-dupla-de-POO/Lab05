@@ -1,5 +1,6 @@
 package pt.c40task.l05wumpus;
 
+// Classe base para todos os componentes do jogo
 public abstract class Componente {
 	private int x, y, primario;
 	Caverna cave;
@@ -7,6 +8,8 @@ public abstract class Componente {
 	Componente(int x, int y, char id, Caverna cave, int primario) {
 		this.x = x; this.y = y; this.id = id; this.cave = cave; this.primario = primario;
 	}
+	
+	// Getters e Setters
 	public int[] getPos() {
 		int[] pos = new int[2];
 		pos[0] = x; pos[1] = y;
