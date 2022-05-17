@@ -62,6 +62,9 @@ public class AppWumpus {
     	 }
 		 
 		 // Mensagens finais
+    	 if (jogo.getJogador().getTerminou()) {
+    		 jogo.getJogador().somaScore(1000);
+    	 }
 		 if (jogo.getJogador().getScore() > 0 && jogo.getJogador().getVivo() && jogo.getJogador().getOuro()) {
 			 System.out.println("Você ganhou!");
 			 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'w');

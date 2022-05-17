@@ -40,7 +40,6 @@ public class Heroi extends Componente {
 			}
 			if (this.getPos()[0] == 0 && this.getPos()[1] == 0 && this.getOuro()) {
 				this.terminou = true;
-				this.score += 1000;
 			}
 		}
 	}
