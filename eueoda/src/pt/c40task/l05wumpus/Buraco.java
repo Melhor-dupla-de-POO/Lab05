@@ -3,6 +3,7 @@ package pt.c40task.l05wumpus;
 public class Buraco extends Componente {
 	Buraco(int x, int y, Caverna cave) {
 		super(x, y, 'B', cave, 1);
+		this.criaSecundario();
 	}
 	public void criaSecundario() {
 		int[] dx = {0, 0, 1, -1}, dy = {1, -1, 0, 0};

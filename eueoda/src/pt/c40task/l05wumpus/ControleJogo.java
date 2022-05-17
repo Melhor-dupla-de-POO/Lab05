@@ -17,20 +17,20 @@ public class ControleJogo {
 
     public void run() {
         Acoes comando = Acoes.INVALIDO;
-        caverna.conecta(jogador);
         System.out.println(caverna);
         System.out.println("Player: " + jogador.getNome());
+        System.out.println("Score: " + jogador.getScore());
         while (Heroi.getVivo()) {
-            comando = leAcoes();
+        	comando = leAcoes();
             if (comando == Acoes.SAI) {
             	System.out.println("Volte sempre!");
             	break;
             }
+            
             jogador.agir(comando);
-
+            
             System.out.println(caverna);
             System.out.println("Player: " + jogador.getNome());
-            // System.out.println(caverna.getSala(jogador.getPos()));
             System.out.println("Score: " + jogador.getScore());
         }
     }

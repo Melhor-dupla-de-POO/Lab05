@@ -13,24 +13,29 @@ public class MontadorCaverna {
 				case 'P':
 					if (heroi == 1 || x != 0 || y != 0) return null;
 					Heroi novoHeroi = new Heroi(x, y, cave, nome);
+					novoHeroi.setPos(x, y);
 					cave.hero = novoHeroi;
 					cave.conecta(novoHeroi);
 					heroi++;
+					break;
 				case 'B':
 					if (buracos == 3) return null;
 					Buraco novoBuraco = new Buraco(x, y, cave);
+					novoBuraco.setPos(x, y);
 					cave.conecta(novoBuraco);
 					buracos++;
 					break;
 				case 'W':
 					if (wumpus == 1) return null;
 					Wumpus novoWumpus = new Wumpus(x, y, cave);
+					novoWumpus.setPos(x, y);
 					cave.conecta(novoWumpus);
 					wumpus++;
 					break;
 				case 'O':
 					if (ouro == 1) return null;
 					Ouro novoOuro = new Ouro(x, y, cave);
+					novoOuro.setPos(x, y);
 					cave.conecta(novoOuro);
 					ouro++;
 					break;

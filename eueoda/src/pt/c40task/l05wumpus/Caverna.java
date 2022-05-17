@@ -9,6 +9,7 @@ public class Caverna {
 		for (int i = 0; i < 4; i++) {
 			for (int j = 0; j < 4; j++) salas[i][j] = new Sala();
 		}
+		salas[0][0].setVisitado(true);
 	}
 	
 	public boolean celulaValida(int[] pos) {
@@ -25,7 +26,12 @@ public class Caverna {
 		// Retornar algum erro
 		if (!celulaValida(pos)) return;
 		
-		this.salas[pos[0]][pos[1]].adiciona(nova);
+		if (nova.getId() != 'P') { 
+			this.salas[pos[0]][pos[1]].adiciona(nova);
+		}
+		else {
+			this.salas[pos[0]][pos[1]].adicionaHeroi(nova);
+		}
 	}
 	
 	void invalido() {
@@ -33,7 +39,7 @@ public class Caverna {
 	}
 	
 	void moveHeroi(Acoes acao) {
-		int[] pos1 = hero.getPos(), pos2 = pos1;
+		int[] pos1 = this.hero.getPos(), pos2 = this.hero.getPos();
 		switch (acao) {
 			case CIMA:
 				pos2[0]--;
@@ -62,10 +68,10 @@ public class Caverna {
 				invalido();
 			}
 			else {
-				this.salas[pos1[0]][pos1[1]].retira(hero);
+				this.salas[pos1[0]][pos1[1]].retira(this.hero);
 				this.salas[pos1[0]][pos1[1]].setVisitado(true);
-				this.salas[pos2[0]][pos2[1]].adicionaHeroi(hero);
-				hero.setPos(pos2);
+				this.salas[pos2[0]][pos2[1]].adicionaHeroi(this.hero);
+				this.hero.setPos(pos2);
 			}
 		}
 	}

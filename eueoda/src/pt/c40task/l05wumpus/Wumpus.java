@@ -3,6 +3,7 @@ package pt.c40task.l05wumpus;
 public class Wumpus extends Componente {
 	Wumpus(int x, int y, Caverna cave) {
 		super(x, y, 'W', cave, 1);
+		this.criaSecundario();
 	}
 	public void criaSecundario() {
 		int[] dx = {0, 0, 1, -1}, dy = {1, -1, 0, 0};

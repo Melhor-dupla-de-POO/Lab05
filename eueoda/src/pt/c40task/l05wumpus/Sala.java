@@ -33,7 +33,7 @@ public class Sala {
 		}
 	}
 	
-	public void adicionaHeroi(Heroi hero) {
+	public void adicionaHeroi(Componente hero) {
 		comps.add(hero);
 		boolean buraco = false, wumpus = false;
 		for (Componente c : comps) {
@@ -74,12 +74,11 @@ public class Sala {
 	public void retira(Componente velha) {
 		this.comps.remove(velha);
 	}
-	
+
 	public String toString() {
-		String ans = new String();
+		if (!this.visitado) return "-";
+		String ans = "#";
 		int pwr = -1;
-		if (this.visitado) ans = "#";
-		else ans = "-";
 		for (Componente c : comps) {
 			if (poder.get(c.getId()) > pwr) {
 				pwr = poder.get(c.getId());

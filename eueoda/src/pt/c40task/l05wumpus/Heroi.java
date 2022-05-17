@@ -31,6 +31,7 @@ public class Heroi extends Componente {
 			}
 		}
 		else cave.moveHeroi(comando);
+		// System.out.println(this.getPos()[0] + " " + this.getPos()[1]);
 	}
 	public void somaScore(int val) {
 		score += val;
