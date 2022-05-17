@@ -18,8 +18,18 @@ public class AppWumpus {
      
      // Monta a caverna e se ela for valida, roda o jogo
      ControleJogo jogo = new ControleJogo(cave);
-     if (jogo.valid())
-    	 jogo.run();
+     if (jogo.valid()) {
+    	 jogo.run(tk);
+     
+		//   char[][] finalCave = {
+		//           {'#', '#', 'b', '-'},
+		//           {'#', 'b', '#', 'f'},
+		//           {'b', '-', '-', 'w'},
+		//           {'#', '-', '-', '-'}
+		//        };
+		//        score = -1210;
+		//        status = 'n'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
+		//        tk.writeBoard(finalCave, score, status);
      
      tk.stop();
   }

@@ -23,7 +23,7 @@ public class ControleJogo {
         System.out.println("Score: " + jogador.getScore());
     }
     
-    public void run() {
+    public void run(Toolkit tk) {
         Acoes comando;
         print();
         
@@ -36,6 +36,7 @@ public class ControleJogo {
             }
             this.jogador.agir(comando);
             print();
+            tk.writeBoard(null, 0, 0);
         }
         
         // Mensagens finais
