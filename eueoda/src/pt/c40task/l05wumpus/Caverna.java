@@ -93,7 +93,7 @@ public class Caverna {
 		// Tambem devolve a matriz da caverna
 		int[] pos = this.hero.getPos();
 		String ans = this.salas[pos[0]][pos[1]].frase();
-		for (Sala[] linha : salas) {
+		for (Sala[] linha : this.salas) {
 			for (Sala s : linha) {
 				ans += s.toString();
 				ans += " ";
@@ -101,5 +101,15 @@ public class Caverna {
 			ans += "\n";
 		}
 		return ans;
+	}
+	
+	public char[][] apresenta() {
+		char[][] mat = new char[4][4];
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				mat[i][j] = this.salas[i][j].toString().charAt(0);
+			}
+		}
+		return mat;
 	}
 }

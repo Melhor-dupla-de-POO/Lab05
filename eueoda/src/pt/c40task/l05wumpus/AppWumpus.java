@@ -1,5 +1,8 @@
 package pt.c40task.l05wumpus;
 
+import java.util.Scanner;
+import java.math.*;
+
 public class AppWumpus {
 
   public static void main(String[] args) {
@@ -14,24 +17,61 @@ public class AppWumpus {
      Toolkit tk = Toolkit.start(arquivoCaverna, arquivoSaida, arquivoMovimentos);
      
      String[][] cave = tk.retrieveCave();
-     System.out.println("=== Caverna");
+     String movements = tk.retrieveMovements();
+     String nome = "Alcebiades";
+     if (movements.length() == 0) {
+    	 Scanner keyboard = new Scanner(System.in);
+    	 System.out.print("Entre com um nome: ");
+         nome = keyboard.nextLine(); 
+     }
      
      // Monta a caverna e se ela for valida, roda o jogo
-     ControleJogo jogo = new ControleJogo(cave);
+     ControleJogo jogo = new ControleJogo(cave, nome);
      if (jogo.valid()) {
-    	 jogo.run(tk);
+    	 Acoes comando;
+    	 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'x');
+    	 if (movements.length() == 0) {
+    		 jogo.print();
+            
+    		 // O jogo roda enquanto o jogador esta vivo e nao sai do jogo
+    		 while (jogo.getJogador().getVivo() && !jogo.getJogador().getTerminou()) {
+    			 comando = jogo.leAcoes('@');
+    			 if (comando == Acoes.SAI) {
+    				 break;
+    			 }
+    			 jogo.getJogador().agir(comando);
+    			 jogo.print();
+    			 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'x');
+    		 }
+    	 }
+    	 else {
+    		 int pos = 0, tot = movements.length();
+    		 
+    		 jogo.print();
+            
+    		 // O jogo roda enquanto o jogador esta vivo e nao sai do jogo
+    		 while (jogo.getJogador().getVivo() && pos < tot && !jogo.getJogador().getTerminou()) {
+    			 comando = jogo.leAcoes(movements.charAt(pos++));
+    			 if (comando == Acoes.SAI) {
+    				 break;
+    			 }
+    			 jogo.getJogador().agir(comando);
+    			 jogo.print();
+    			 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'x');
+    		 }
+    	 }
+		 
+		 // Mensagens finais
+		 if (jogo.getJogador().getScore() > 0 && jogo.getJogador().getVivo() && jogo.getJogador().getOuro()) {
+			 System.out.println("Você ganhou!");
+			 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'w');
+		 }
+		 else {
+			 System.out.println("Você perdeu :(");
+			 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'n');
+		 }
      
-		//   char[][] finalCave = {
-		//           {'#', '#', 'b', '-'},
-		//           {'#', 'b', '#', 'f'},
-		//           {'b', '-', '-', 'w'},
-		//           {'#', '-', '-', '-'}
-		//        };
-		//        score = -1210;
-		//        status = 'n'; // 'w' para venceu; 'n' para perdeu; 'x' intermediárias
-		//        tk.writeBoard(finalCave, score, status);
-     
-     tk.stop();
+    }
+    tk.stop();
   }
-
 }

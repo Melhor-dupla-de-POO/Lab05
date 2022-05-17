@@ -89,7 +89,6 @@ public class Sala {
 		}
 		this.comps.remove(o);
 		if (ouro) {
-			hero.somaScore(1000);
 			hero.setOuro(true);
 			System.out.println("Você capturou o ouro!");
 		}

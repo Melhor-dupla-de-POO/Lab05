@@ -7,12 +7,10 @@ public class ControleJogo {
     private Caverna caverna;
     private Heroi jogador;
 
-    public ControleJogo(String[][] arquivoCaverna) {
-    	System.out.print("Entre com um nome: ");
-        String nome = keyboard.nextLine();
+    public ControleJogo(String[][] arquivoCaverna, String nome) {
         caverna = MontadorCaverna.montaCaverna(arquivoCaverna, nome);
         if (caverna == null) System.out.println("Caverna inválida!");
-        this.jogador = this.caverna.hero;
+        else this.jogador = this.caverna.hero;
     }
 
     void print() {
@@ -22,36 +20,16 @@ public class ControleJogo {
         System.out.println("Player: " + jogador.getNome());
         System.out.println("Score: " + jogador.getScore());
     }
-    
-    public void run(Toolkit tk) {
-        Acoes comando;
-        print();
-        
-        // O jogo roda enquanto o jogador esta vivo e nao sai do jogo
-        while (this.jogador.getVivo()) {
-        	comando = leAcoes();
-            if (comando == Acoes.SAI) {
-            	if (this.jogador.getOuro()) this.jogador.somaScore(1000);
-            	break;
-            }
-            this.jogador.agir(comando);
-            print();
-            tk.writeBoard(null, 0, 0);
-        }
-        
-        // Mensagens finais
-        if (this.jogador.getScore() > 0 && this.jogador.getVivo() && jogador.getOuro())
-    		System.out.println("Você ganhou!");
-    	else 
-    		System.out.println("Você perdeu :(");
-    }
 
-    private Acoes leAcoes() {
+    public Acoes leAcoes(char in) {
     	// Traduz o input para o enum
     	
-        String input = keyboard.nextLine();
-        if (input.length() > 1) return Acoes.INVALIDO;
-        char c = input.charAt(0);
+    	char c = in;
+    	if (in == '@') {
+    		String input = keyboard.nextLine();
+    		if (input.length() > 1) return Acoes.INVALIDO;
+    		c = input.charAt(0);
+    	}
         Acoes acoes = Acoes.INVALIDO;
         switch (c) {
             case 'w':
@@ -82,4 +60,11 @@ public class ControleJogo {
     public boolean valid() {
     	return this.caverna != null;
     }
+    public Heroi getJogador() {
+    	return this.jogador;
+    }
+    public Caverna getCaverna() {
+    	return this.caverna;
+    }
+    
 }

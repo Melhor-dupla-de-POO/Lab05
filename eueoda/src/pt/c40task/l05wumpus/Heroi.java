@@ -3,7 +3,7 @@ package pt.c40task.l05wumpus;
 public class Heroi extends Componente {
 	private String nome;
 	private int qt_flecha, score;
-	private boolean vivo, equipada, ouro;
+	private boolean vivo, equipada, ouro, terminou;
 	
 	Heroi(int x, int y, Caverna cave, String nome) {
 		super(x, y, 'P', cave, 0);
@@ -38,6 +38,10 @@ public class Heroi extends Componente {
 				this.setEquipada(false);
 				this.score -= 100;
 			}
+			if (this.getPos()[0] == 0 && this.getPos()[1] == 0 && this.getOuro()) {
+				this.terminou = true;
+				this.score += 1000;
+			}
 		}
 	}
 	
@@ -69,5 +73,11 @@ public class Heroi extends Componente {
 	}
 	public void setEquipada(boolean equipada) {
 		this.equipada = equipada;
+	}
+	public boolean getTerminou() {
+		return this.terminou;
+	}
+	public void setTerminou(boolean terminou) {
+		this.terminou = terminou;
 	}
 }
