@@ -20,14 +20,18 @@ public class ControleJogo {
         System.out.println(caverna);
         System.out.println("Player: " + jogador.getNome());
         System.out.println("Score: " + jogador.getScore());
-        while (Heroi.getVivo()) {
+        while (this.jogador.getVivo()) {
         	comando = leAcoes();
             if (comando == Acoes.SAI) {
-            	System.out.println("Volte sempre!");
+            	if (this.jogador.getOuro()) this.jogador.somaScore(1000);
+            	if (this.jogador.getScore() > 0)
+            		System.out.println("Você ganhou!");
+            	else 
+            		System.out.println("Você perdeu :(");
             	break;
             }
             
-            jogador.agir(comando);
+            this.jogador.agir(comando);
             
             System.out.println(caverna);
             System.out.println("Player: " + jogador.getNome());

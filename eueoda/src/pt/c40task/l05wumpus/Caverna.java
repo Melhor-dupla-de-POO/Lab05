@@ -26,12 +26,16 @@ public class Caverna {
 		// Retornar algum erro
 		if (!celulaValida(pos)) return;
 		
-		if (nova.getId() != 'P') { 
-			this.salas[pos[0]][pos[1]].adiciona(nova);
-		}
-		else {
-			this.salas[pos[0]][pos[1]].adicionaHeroi(nova);
-		}
+		this.salas[pos[0]][pos[1]].adiciona(nova);
+	}
+	
+	void conectaHeroi(Heroi hero) {
+		int[] pos = hero.getPos();
+		
+		// Retornar algum erro
+		if (!celulaValida(pos)) return;
+		
+		this.salas[pos[0]][pos[1]].adicionaHeroi(hero);
 	}
 	
 	void invalido() {
@@ -57,7 +61,7 @@ public class Caverna {
 				invalido();
 				break;
 			case CAPTURA:
-				this.salas[pos1[0]][pos1[1]].coleta();
+				this.salas[pos1[0]][pos1[1]].coleta(this.hero);
 				break;
 			default:
 				break;
@@ -69,15 +73,17 @@ public class Caverna {
 			}
 			else {
 				this.salas[pos1[0]][pos1[1]].retira(this.hero);
-				this.salas[pos1[0]][pos1[1]].setVisitado(true);
+				this.salas[pos2[0]][pos2[1]].setVisitado(true);
 				this.salas[pos2[0]][pos2[1]].adicionaHeroi(this.hero);
 				this.hero.setPos(pos2);
+				this.hero.somaScore(-15);
 			}
 		}
 	}
 	
 	public String toString() {
-		String ans = new String();
+		int[] pos = this.hero.getPos();
+		String ans = this.salas[pos[0]][pos[1]].frase();
 		for (Sala[] linha : salas) {
 			for (Sala s : linha) {
 				ans += s.toString();

@@ -14,4 +14,8 @@ public class Buraco extends Componente {
 			cave.conecta(s);
 		}
 	}
+	
+	public String toString() {
+		return "Você caiu no buraco e morreu :(\n";
+	}
 }

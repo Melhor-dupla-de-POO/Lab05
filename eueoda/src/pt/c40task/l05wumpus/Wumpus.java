@@ -5,6 +5,7 @@ public class Wumpus extends Componente {
 		super(x, y, 'W', cave, 1);
 		this.criaSecundario();
 	}
+	
 	public void criaSecundario() {
 		int[] dx = {0, 0, 1, -1}, dy = {1, -1, 0, 0};
 		int[] cur = this.getPos();
@@ -13,5 +14,9 @@ public class Wumpus extends Componente {
 			Fedor s = new Fedor(x, y, cave);
 			cave.conecta(s);
 		}
+	}
+	
+	public String toString() {
+		return "";
 	}
 }

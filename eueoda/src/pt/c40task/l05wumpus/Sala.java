@@ -1,7 +1,9 @@
 package pt.c40task.l05wumpus;
 
 import java.util.ArrayList;
+import java.util.random.*;
 import java.util.Map;
+import java.util.Random;
 
 public class Sala {
 	private ArrayList<Componente> comps;
@@ -33,37 +35,50 @@ public class Sala {
 		}
 	}
 	
-	public void adicionaHeroi(Componente hero) {
+	public void adicionaHeroi(Heroi hero) {
 		comps.add(hero);
 		boolean buraco = false, wumpus = false;
+		Componente w = null;
 		for (Componente c : comps) {
 			buraco |= (c.getId() == 'B');
-			wumpus |= (c.getId() == 'W');
+			if (c.getId() == 'W') {
+				wumpus = true;
+				w = c;
+			}
 		}
 		
-		// nao sei se a gnt printa aqui ou qd printar o bagulho da sala
+		Random rand = new Random();
+		
 		if (buraco) {
-			Heroi.setVivo(false);
+			hero.morre();
 		}
 		if (wumpus) {
-			if (Heroi.getEquipada()) {
+			if (hero.getEquipada() && rand.nextBoolean()) {
 				// to do random
 				System.out.println("Você entrou na sala e matou o Wumpus!");
+				hero.somaScore(500);
+				this.comps.remove(w);
 			}
 			else {
-				Heroi.setVivo(false);
+				hero.morre();
 				System.out.println("Vocẽ entrou na sala e o Wumpus te matou");
 			}
 		}
 	}
 	
-	public void coleta() {
+	public void coleta(Heroi hero) {
 		boolean ouro = false;
+		Componente o = null;
 		for (Componente c : comps) {
-			ouro |= (c.getId() == 'O');
+			if (c.getId() == 'O') {
+				ouro = true;
+				o = c;
+			}
 		}
+		this.comps.remove(o);
 		if (ouro) {
-			Heroi.setOuro(true);
+			hero.somaScore(1000);
+			hero.setOuro(true);
 			System.out.println("Você capturou o ouro!");
 		}
 		else {
@@ -83,6 +98,19 @@ public class Sala {
 			if (poder.get(c.getId()) > pwr) {
 				pwr = poder.get(c.getId());
 				ans = "" + c.getId();
+			}
+		}
+		return ans;
+	}
+	
+	public String frase() {
+		String ans = "A sala está vazia\n";
+		int pwr = -1;
+		for (Componente c : comps) {
+			int p = poder.get(c.getId());
+			if (p > pwr && p != 2) {
+				pwr = p;
+				ans = c.toString();
 			}
 		}
 		return ans;

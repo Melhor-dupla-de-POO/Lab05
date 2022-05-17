@@ -15,7 +15,7 @@ public class MontadorCaverna {
 					Heroi novoHeroi = new Heroi(x, y, cave, nome);
 					novoHeroi.setPos(x, y);
 					cave.hero = novoHeroi;
-					cave.conecta(novoHeroi);
+					cave.conectaHeroi(novoHeroi);
 					heroi++;
 					break;
 				case 'B':
