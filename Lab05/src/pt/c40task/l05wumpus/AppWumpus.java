@@ -63,6 +63,7 @@ public class AppWumpus {
 		 // Mensagens finais
     	 if (jogo.getJogador().getTerminou()) {
     		 jogo.getJogador().somaScore(1000);
+    		 System.out.println("Volte sempre!");
     	 }
 		 if (jogo.getJogador().getScore() > 0 && jogo.getJogador().getVivo() && jogo.getJogador().getOuro()) {
 			 jogo.print();
