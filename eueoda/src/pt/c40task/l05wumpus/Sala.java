@@ -1,7 +1,6 @@
 package pt.c40task.l05wumpus;
 
 import java.util.ArrayList;
-import java.util.random.*;
 import java.util.Map;
 import java.util.Random;
 

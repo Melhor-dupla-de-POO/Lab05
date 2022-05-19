@@ -5,65 +5,65 @@ P---
 score: 0
 status: x
 =====
-#P--
+P---
 ----
+----
+----
+score: 0
+status: x
+=====
+#---
+P---
 ----
 ----
 score: -15
 status: x
 =====
-##P-
-----
-----
-----
-score: -30
-status: x
-=====
-##P-
-----
+#---
+#P--
 ----
 ----
 score: -30
 status: x
 =====
-##b-
---O-
+#---
+##O-
 ----
 ----
-score: -145
+score: -45
 status: x
 =====
-##b-
---P-
-----
-----
-score: -145
-status: x
-=====
+#---
 ##P-
---#-
 ----
 ----
-score: -160
+score: -45
 status: x
 =====
-#Pb-
---#-
+#---
+#P#-
 ----
 ----
-score: -175
+score: -60
 status: x
 =====
-P#b-
---#-
+#---
+P##-
 ----
 ----
-score: -190
+score: -75
 status: x
 =====
-P#b-
---#-
+P---
+###-
 ----
 ----
-score: 810
+score: -90
+status: x
+=====
+P---
+###-
+----
+----
+score: 910
 status: w

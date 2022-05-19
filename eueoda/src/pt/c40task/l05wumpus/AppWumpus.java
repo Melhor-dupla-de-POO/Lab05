@@ -1,7 +1,6 @@
 package pt.c40task.l05wumpus;
 
 import java.util.Scanner;
-import java.math.*;
 
 public class AppWumpus {
 
@@ -66,10 +65,12 @@ public class AppWumpus {
     		 jogo.getJogador().somaScore(1000);
     	 }
 		 if (jogo.getJogador().getScore() > 0 && jogo.getJogador().getVivo() && jogo.getJogador().getOuro()) {
+			 jogo.print();
 			 System.out.println("Você ganhou!");
 			 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'w');
 		 }
 		 else {
+			 jogo.print();
 			 System.out.println("Você perdeu :(");
 			 tk.writeBoard(jogo.getCaverna().apresenta(), jogo.getJogador().getScore(), 'n');
 		 }
