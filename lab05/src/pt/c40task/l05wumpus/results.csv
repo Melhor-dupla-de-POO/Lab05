@@ -57,55 +57,13 @@ status: x
 ##b-
 --#b
 ---f
----P
-score: 310
+---W
+score: -1190
 status: x
 =====
 ##b-
 --#b
----P
----#
-score: 295
-status: x
-=====
-##b-
---#P
 ---f
----#
-score: 280
-status: x
-=====
-##b-
---Pb
----f
----#
-score: 265
-status: x
-=====
-##P-
---#b
----f
----#
-score: 250
-status: x
-=====
-#Pb-
---#b
----f
----#
-score: 235
-status: x
-=====
-P#b-
---#b
----f
----#
-score: 220
-status: x
-=====
-P#b-
---#b
----f
----#
-score: 1220
-status: w
+---W
+score: -1190
+status: n
