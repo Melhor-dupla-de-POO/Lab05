@@ -1,11 +1,11 @@
 # Lab05
-
-## Destaques
 [Arquivos java](src/pt/c40task/l05wumpus/)
 
 - Alunos:
   - Bernardo Panka Archegas 246970
   - Luiz Henrique Yuji Delgado Oda 247255
+
+## Destaques
 ```java
 Sala() {
 	comps = new ArrayList<Componente>();
