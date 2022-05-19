@@ -1,7 +1,7 @@
 # Lab05
 
 ## Destaques
-[Arquivos java](src/pt/c40task/l05wumpus/)
+[Arquivos java](lab05/src/pt/c40task/l05wumpus/)
 
 Alunos:
   Bernardo Panka Archegas 246970
